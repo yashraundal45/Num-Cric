@@ -26,6 +26,7 @@ body {
     font-family: var(--font-mont);
     width: 100vw; height: 100vh;
     overflow: hidden;
+    position: fixed; /* Prevents mobile scroll bounce */
 }
 
 /* REALISTIC BACKGROUND */
@@ -110,10 +111,11 @@ body {
 
 /* GLOBALS */
 .icon-btn {
-    position: absolute; top: 20px; right: 20px;
+    position: absolute; top: 15px; right: 15px;
     background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border);
-    color: white; width: 50px; height: 50px; border-radius: 50%;
+    color: white; width: 45px; height: 45px; border-radius: 50%;
     cursor: pointer; z-index: 100; transition: 0.2s; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center;
 }
 .icon-btn:hover { background: var(--green); }
 
@@ -121,7 +123,7 @@ h1, h2, h3 { line-height: 1; }
 
 button {
     font-family: var(--font-bebas); font-size: 1.8rem; letter-spacing: 2px;
-    border: none; padding: 15px 30px;
+    border: none; padding: 12px 24px; border-radius: 8px;
     cursor: pointer; transition: all 0.2s; text-transform: uppercase;
 }
 
@@ -135,104 +137,127 @@ button {
 .back-btn { background: transparent; color: var(--text-muted); font-size: 2rem; padding: 0; }
 .back-btn:hover { color: white; }
 
-.screen { flex: 1; display: flex; flex-direction: column; padding: 20px; animation: fadeIn 0.4s; }
+.screen { flex: 1; display: flex; flex-direction: column; padding: 20px; animation: fadeIn 0.4s; height: 100%; overflow-y: auto;}
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* HOME */
 .hero-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.ball-wrapper { background: radial-gradient(circle, rgba(34,197,94,0.2) 0%, transparent 60%); padding: 40px; margin-bottom: -10px; }
-.hero-ball { width: 140px; animation: float 4s ease-in-out infinite; }
+.ball-wrapper { background: radial-gradient(circle, rgba(34,197,94,0.2) 0%, transparent 60%); padding: 30px; margin-bottom: -10px; }
+.hero-ball { width: 120px; animation: float 4s ease-in-out infinite; }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-.title { font-family: var(--font-russo); font-size: 8rem; text-align: center;}
-.action-buttons { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 350px; margin-top: 50px; }
+.title { font-family: var(--font-russo); font-size: 6rem; text-align: center;}
+.action-buttons { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 350px; margin-top: 40px; }
 
 /* STATS */
-.header { display: flex; justify-content: center; align-items: center; margin-bottom: 40px; position: relative;}
-.header h2 { font-family: var(--font-russo); font-size: 4rem; color: white; }
+.header { display: flex; justify-content: center; align-items: center; margin-bottom: 30px; position: relative; width: 100%;}
+.header h2 { font-family: var(--font-russo); font-size: 3rem; color: white; text-align: center;}
 .header .back-btn { position: absolute; left: 0; }
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 800px; margin: 0 auto; width: 100%;}
-.stat-card { background: rgba(0,0,0,0.6); border: 1px solid var(--glass-border); padding: 25px; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; }
-.icon-bg { position: absolute; font-size: 6rem; opacity: 0.05; right: -10px; bottom: -10px; }
-.stat-value { font-family: var(--font-bebas); font-size: 5rem; line-height: 1; z-index: 1;}
-.stat-label { font-size: 1rem; color: var(--text-muted); font-weight: 800; letter-spacing: 2px; z-index: 1; margin-top: 10px; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; max-width: 800px; margin: 0 auto; width: 100%;}
+.stat-card { background: rgba(0,0,0,0.6); border: 1px solid var(--glass-border); padding: 20px; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; border-radius: 12px;}
+.icon-bg { position: absolute; font-size: 5rem; opacity: 0.05; right: -10px; bottom: -10px; }
+.stat-value { font-family: var(--font-bebas); font-size: 4rem; line-height: 1; z-index: 1;}
+.stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 800; letter-spacing: 1px; z-index: 1; margin-top: 5px; }
 
 /* MODES */
-.grid-desktop { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; width: 100%;}
-.mode-item { background: rgba(15,23,42,0.8); border: 1px solid var(--glass-border); padding: 30px; display: flex; align-items: center; cursor: pointer; transition: 0.3s;}
-.mode-item:hover { background: rgba(30,41,59,0.9); border-color: var(--green); transform: translateY(-10px); }
-.mode-icon { font-size: 4rem; width: 100px; display: flex; justify-content: center; }
-.mode-details h3 { font-family: var(--font-russo); font-size: 2.5rem; margin-bottom: 5px; }
-.mode-details p { font-size: 1rem; color: var(--text-muted); font-weight: 600; }
+.grid-desktop { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; width: 100%;}
+.mode-item { background: rgba(15,23,42,0.8); border: 1px solid var(--glass-border); padding: 20px; display: flex; align-items: center; cursor: pointer; transition: 0.3s; border-radius: 16px;}
+.mode-item:hover { background: rgba(30,41,59,0.9); border-color: var(--green); transform: translateY(-5px); }
+.mode-icon { font-size: 3rem; width: 80px; display: flex; justify-content: center; }
+.mode-details h3 { font-family: var(--font-russo); font-size: 2rem; margin-bottom: 5px; }
+.mode-details p { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; }
 
 /* TOSS */
-.toss-arena { display: flex; flex-direction: column; align-items: center; width: 100%; }
-.title-font { font-family: var(--font-russo); }
-.coin-container { perspective: 1000px; width: 200px; height: 200px; margin-bottom: 20px; }
+.toss-arena { display: flex; flex-direction: column; align-items: center; width: 100%; justify-content: center; flex: 1;}
+.title-font { font-family: var(--font-russo); font-size: 4rem; text-align: center;}
+.coin-container { perspective: 1000px; width: 150px; height: 150px; margin-bottom: 20px; }
 .coin { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 3s cubic-bezier(0.1, 0.8, 0.2, 1); }
-.coin .side { width: 100%; height: 100%; position: absolute; backface-visibility: hidden; border-radius: 50%; background-size: cover; border: 6px solid #fcd34d;}
-.coin .heads { background-image: url('https://img.freepik.com/premium-vector/gold-coin-with-cricket-ball_118813-5858.jpg'); background-position: center;}
-.coin .tails { background-image: url('https://img.freepik.com/premium-vector/gold-coin-with-cricket-bat_118813-5859.jpg'); transform: rotateX(180deg); background-position: center;}
-.toss-buttons { display: flex; gap: 20px; margin-top: 30px; }
-.toss-btn { background: rgba(0,0,0,0.6); border: 2px solid var(--gold); color: var(--gold); width: 180px; font-size: 2.5rem;}
-.decision-btn { width: 200px; font-size: 2.5rem; }
+.coin .side { 
+    width: 100%; height: 100%; position: absolute; backface-visibility: hidden; 
+    border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; 
+    font-family: var(--font-bebas); font-size: 3rem; color: #78350f;
+    border: 8px solid #b45309; 
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.6), 0 10px 20px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 2px rgba(255,255,255,0.4);
+}
+.coin .heads { background: radial-gradient(circle at 30% 30%, #fde68a, #d97706); }
+.coin .tails { background: radial-gradient(circle at 30% 30%, #fde68a, #d97706); transform: rotateX(180deg); }
+.toss-buttons { display: flex; gap: 15px; margin-top: 20px; }
+.toss-btn { background: rgba(0,0,0,0.6); border: 2px solid var(--gold); color: var(--gold); width: 140px; font-size: 2rem;}
+.decision-btn { width: 160px; font-size: 2rem; }
 .action-bat { background: var(--green); color: white; border: 1px solid #4ade80; }
 .action-bowl { background: transparent; color: white; border: 1px solid var(--text-muted); }
 
 /* =========================================
-   FULL SCREEN GAME LAYOUT
+   FULL SCREEN GAME LAYOUT (Desktop & Mobile)
    ========================================= */
 .game-layout {
     display: block;
     padding: 0;
     margin: 0;
+    height: 100vh;
 }
 
 .ui-panel { position: absolute; z-index: 10; }
 
-.top-left { top: 30px; left: 30px; width: 350px; }
-/* Moved Commentary to bottom-right */
-.bottom-right { bottom: 30px; right: 30px; width: 400px; }
-.bottom-center { bottom: 30px; left: 50%; transform: translateX(-50%); width: 600px; }
+.top-left { top: 20px; left: 20px; width: 350px; }
+.bottom-right { bottom: 20px; right: 20px; width: 400px; }
+.bottom-center { bottom: 20px; left: 50%; transform: translateX(-50%); width: 600px; }
 
 /* Broadcast Scoreboard */
-.broadcast-scoreboard { padding: 20px; border-left: 6px solid var(--green); }
+.broadcast-scoreboard { padding: 15px; border-left: 6px solid var(--green); border-radius: 12px; }
 .score-top { display: flex; justify-content: space-between; align-items: center; }
-.team-name { font-family: var(--font-bebas); font-size: 2.2rem; font-weight: 700; margin-right: 15px; letter-spacing: 2px;}
+.team-name { font-family: var(--font-bebas); font-size: 2rem; font-weight: 700; margin-right: 15px; letter-spacing: 2px;}
 .runs-wickets { display: flex; align-items: baseline; font-family: var(--font-bebas); }
-.runs { font-size: 5.5rem; line-height: 0.8; color: white; }
-.slash { font-size: 3rem; color: var(--text-muted); margin: 0 8px; }
-.wickets { font-size: 3.5rem; color: var(--red); }
+.runs { font-size: 4.5rem; line-height: 0.8; color: white; }
+.slash { font-size: 2.5rem; color: var(--text-muted); margin: 0 6px; }
+.wickets { font-size: 3rem; color: var(--red); }
 .match-info { display: flex; flex-direction: column; align-items: flex-end; }
-.match-mode { font-size: 0.85rem; font-weight: 800; padding: 4px 8px; margin-bottom: 8px; color: var(--gold);}
-.overs-text { font-family: var(--font-bebas); font-size: 1.5rem; color: var(--text-muted); letter-spacing: 1px;}
+.match-mode { font-size: 0.75rem; font-weight: 800; padding: 4px 8px; margin-bottom: 6px; color: var(--gold); border-radius: 4px;}
+.overs-text { font-family: var(--font-bebas); font-size: 1.2rem; color: var(--text-muted); letter-spacing: 1px;}
 
 /* Commentary */
-.commentary-box { height: 180px; display: flex; flex-direction: column; overflow: hidden; padding: 0; border-top: 4px solid var(--text-muted);}
-.comm-header { font-size: 0.85rem; font-weight: 900; background: rgba(0,0,0,0.5); padding: 10px 15px; letter-spacing: 1px;}
-.comm-list { padding: 15px; font-size: 1rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
+.commentary-box { height: 160px; display: flex; flex-direction: column; overflow: hidden; padding: 0; border-top: 4px solid var(--text-muted); border-radius: 12px;}
+.comm-header { font-size: 0.8rem; font-weight: 900; background: rgba(0,0,0,0.5); padding: 8px 15px; letter-spacing: 1px;}
+.comm-list { padding: 15px; font-size: 0.95rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
 .comm-item { animation: slideUp 0.3s; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;}
 @keyframes slideUp { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-/* Controls Grid Fix (Wrap and Center) */
-.controls-area { padding: 20px 30px; border-top: 4px solid var(--gold); }
-.number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+/* Controls Grid */
+.controls-area { padding: 15px 20px; border-top: 4px solid var(--gold); border-radius: 16px;}
+.number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+
+/* FIX: BRIGHTER BUTTON COLORS */
 .num-btn { 
     flex: 1 1 25%;
-    max-width: 120px; height: 80px; font-size: 3.5rem; font-family: var(--font-bebas);
-    background: rgba(15, 23, 42, 0.9); border: 2px solid rgba(255,255,255,0.2); 
+    max-width: 100px; height: 70px; font-size: 3rem; font-family: var(--font-bebas);
+    /* Changed from dark blue to a distinct, highly visible semi-transparent white/gray */
+    background: rgba(255, 255, 255, 0.2); 
+    border: 2px solid rgba(255, 255, 255, 0.5); 
+    color: white;
     display: flex; align-items: center; justify-content: center; 
     padding: 0; 
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
 }
-.num-btn:active, .num-btn:hover:not(:disabled) { background: var(--green); border-color: var(--green); transform: scale(0.95); }
-.num-btn:disabled { opacity: 0.4; filter: grayscale(1); transform: none; background: #0f172a; cursor: not-allowed;}
+.num-btn:active, .num-btn:hover:not(:disabled) { 
+    background: var(--green); 
+    border-color: #fff; 
+    transform: scale(0.95); 
+}
+.num-btn:disabled { 
+    opacity: 0.3; 
+    background: rgba(0, 0, 0, 0.5); 
+    border-color: rgba(255,255,255,0.1); 
+    cursor: not-allowed;
+}
 
 /* =========================================
    3D PITCH & ANIMATIONS (FULL SCREEN NO CUTS)
    ========================================= */
-.pitch-layer { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; perspective: 1200px; z-index: 1;}
+.pitch-layer { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; perspective: 1000px; z-index: 1;}
 
-/* Tweak pitch dimensions so it looks endless and smooth */
-.pitch-container { width: 350px; height: 1600px; transform: rotateX(70deg) translateZ(-50px); transform-style: preserve-3d; transform-origin: bottom center; margin-bottom: -100px;}
+.pitch-container { width: 300px; height: 1200px; transform: rotateX(70deg) translateZ(-50px); transform-style: preserve-3d; transform-origin: bottom center; margin-bottom: -50px;}
 .pitch { width: 100%; height: 100%; background: #d0b48b; border-left: 4px solid rgba(255,255,255,0.8); border-right: 4px solid rgba(255,255,255,0.8); position: relative; overflow: hidden;}
 
 /* Pitch Grass Stripes */
@@ -241,14 +266,14 @@ button {
 
 /* Creases */
 .crease { position: absolute; width: 100%; height: 4px; background: white; }
-.top-crease { top: 25%; } .bottom-crease { bottom: 15%; }
+.top-crease { top: 20%; } .bottom-crease { bottom: 15%; }
 
 /* Stumps 3D */
 .stump-set { position: absolute; left: 50%; transform: translateX(-50%) rotateX(-70deg); transform-origin: bottom; display: flex; gap: 5px; height: 60px; }
-.top-stumps { top: 15%; height: 40px;} 
+.top-stumps { top: 10%; height: 40px;} 
 .bottom-stumps { bottom: 15%; z-index: 5;}
-.stump { width: 8px; height: 100%; background: linear-gradient(to right, #d97706, #fcd34d, #d97706); border-radius: 4px 4px 0 0; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
-.bail { position: absolute; width: 18px; height: 4px; background: #fcd34d; top: -2px; border-radius: 2px; transition: transform 0.4s ease-out, opacity 0.4s; }
+.stump { width: 6px; height: 100%; background: linear-gradient(to right, #d97706, #fcd34d, #d97706); border-radius: 4px 4px 0 0; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
+.bail { position: absolute; width: 14px; height: 4px; background: #fcd34d; top: -2px; border-radius: 2px; transition: transform 0.4s ease-out, opacity 0.4s; }
 .bail-1 { left: -2px; } .bail-2 { right: -2px; }
 
 /* Stump Break Animation Classes */
@@ -258,28 +283,27 @@ button {
 .stump-broken .bail { transform: translateY(-50px) translateZ(50px) rotateZ(180deg); opacity: 0; }
 
 /* The Ball */
-.anim-ball { position: absolute; width: 16px; height: 16px; background: radial-gradient(circle at 30% 30%, #fca5a5, #dc2626, #7f1d1d); border-radius: 50%; left: 50%; z-index: 10;}
+.anim-ball { position: absolute; width: 14px; height: 14px; background: radial-gradient(circle at 30% 30%, #fca5a5, #dc2626, #7f1d1d); border-radius: 50%; left: 50%; z-index: 10;}
 
 /* Bowling Animation (Smooth Pitching) */
 .ball-bowl { animation: bowlAnim 0.8s cubic-bezier(0.2, 0.6, 0.4, 1) forwards; }
 @keyframes bowlAnim { 
-    0% { top: 15%; transform: translateX(-50%) translateZ(60px) scale(0.6); } 
-    50% { top: 50%; transform: translateX(-50%) translateZ(0px) scale(0.8); } /* Bounces cleanly in the middle */
-    100% { top: 85%; transform: translateX(-50%) translateZ(30px) scale(1); } 
+    0% { top: 10%; transform: translateX(-50%) translateZ(40px) scale(0.6); } 
+    50% { top: 50%; transform: translateX(-50%) translateZ(0px) scale(0.8); } 
+    100% { top: 85%; transform: translateX(-50%) translateZ(20px) scale(1); } 
 }
 
 /* Hitting Animation (Flies towards screen) */
 .ball-hit { animation: hitAnim 0.6s ease-out forwards; }
 @keyframes hitAnim { 
-    0% { top: 85%; transform: translateX(-50%) translateZ(30px) scale(1); } 
-    100% { top: -20%; transform: translateX(-300px) translateZ(400px) scale(4); opacity: 0; } 
+    0% { top: 85%; transform: translateX(-50%) translateZ(20px) scale(1); } 
+    100% { top: -20%; transform: translateX(-300px) translateZ(300px) scale(3); opacity: 0; } 
 }
-
 
 /* Action Overlay (OUT / SIX) */
 .action-overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); z-index: 100; animation: popIn 0.2s; }
 @keyframes popIn { 0% { opacity: 0; } 100% { opacity: 1; } }
-.action-text { font-family: var(--font-russo); font-size: 10rem; margin: 0; line-height: 1; transform: scale(0); animation: zoomInText 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.action-text { font-family: var(--font-russo); font-size: 8rem; margin: 0; line-height: 1; transform: scale(0); animation: zoomInText 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; text-align: center; }
 @keyframes zoomInText { to { transform: scale(1); } }
 .action-out { color: var(--red); }
 .action-six { color: var(--gold); }
@@ -290,16 +314,62 @@ button {
 .flash-anim { animation: flash 0.6s ease-out; }
 @keyframes flash { 0% { opacity: 1; } 100% { opacity: 0; } }
 .shake-anim { animation: screenShake 0.4s; }
-@keyframes screenShake { 0%, 100% { transform: translateX(0) translateY(0); } 20%, 60% { transform: translateX(-15px) translateY(10px); } 40%, 80% { transform: translateX(15px) translateY(-10px); } }
+@keyframes screenShake { 0%, 100% { transform: translateX(0) translateY(0); } 20%, 60% { transform: translateX(-10px) translateY(5px); } 40%, 80% { transform: translateX(10px) translateY(-5px); } }
 
-/* Responsiveness */
-@media (max-width: 1200px) {
-    .bottom-center { width: 500px; }
-}
+/* =========================================
+   MOBILE RESPONSIVENESS (Fixes Interface Cuts)
+   ========================================= */
 @media (max-width: 900px) {
-    .top-left { width: 300px; }
-    .bottom-right { width: 300px; }
-    .bottom-center { width: 400px; }
-    .runs { font-size: 4rem; }
-    .wickets { font-size: 3rem; }
+    /* Make typography smaller on mobile */
+    .title { font-size: 4rem; }
+    .header h2 { font-size: 2.5rem; }
+    .stat-value { font-size: 3rem; }
+    
+    /* Layout reflow for game screen */
+    .game-layout {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .ui-panel {
+        position: relative;
+        top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+        transform: none !important;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .top-left { margin: 10px; width: calc(100% - 20px); }
+    .bottom-right { display: none; } /* Hide commentary on mobile to save vertical space */
+    .bottom-center { margin: 10px; width: calc(100% - 20px); margin-top: auto; }
+    
+    .pitch-layer {
+        z-index: 0; /* Let UI sit on top natively */
+        margin-top: -100px;
+    }
+    .pitch-container { height: 1000px; }
+    
+    .runs { font-size: 3.5rem; }
+    .wickets { font-size: 2.5rem; }
+    .slash { font-size: 2rem; }
+    
+    .num-btn { height: 60px; font-size: 2.5rem; }
+    
+    .result-title { font-size: 5rem !important; }
+    .final-scores span { font-size: 4rem !important; }
+    #result-summary { font-size: 1.5rem !important; }
+}
+
+@media (max-width: 450px) {
+    .title { font-size: 3.5rem; }
+    .hero-ball { width: 90px; }
+    .toss-btn { width: 120px; font-size: 1.5rem; }
+    .decision-btn { width: 140px; font-size: 1.5rem; }
+    
+    .broadcast-scoreboard { padding: 10px; }
+    .runs { font-size: 3rem; }
+    .wickets { font-size: 2rem; }
+    .num-btn { height: 50px; font-size: 2rem; }
+    #current-role { font-size: 2rem !important; }
 }
